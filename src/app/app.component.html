@@ -1,0 +1,25 @@
+<div class="app-container">
+  <div *ngIf="!authService.getUsername()" class="login-container">
+    <h2>
+      <img src="/image/logo-swoyochat.svg" width="213" height="218">
+    </h2>
+    <input [(ngModel)]="username" placeholder="Your name..." />
+    <button (click)="login()">Login</button>
+  </div>
+
+  <div *ngIf="authService.getUsername()" class="chat-container" style="background-image: url('/image/background.jpg');">
+    <div class="messages">
+      <div *ngFor="let message of messages" class="message">
+        <strong>{{ message.user }}:</strong> {{ message.text }}
+        <span class="timestamp">{{ message.time }}</span>
+      </div>
+    </div>
+    <div class="input-container">
+      <input
+        [(ngModel)]="newMessage"
+        placeholder="Type your message in SWOYOCHAT..."
+        (keydown.enter)="sendMessage()" />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
