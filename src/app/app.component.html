@@ -6,10 +6,9 @@
     <input [(ngModel)]="username" placeholder="Your name..." />
     <button (click)="login()">Login</button>
   </div>
-
   <div *ngIf="authService.getUsername()" class="chat-container" style="background-image: url('/image/background.jpg');">
     <div class="messages">
-      <div *ngFor="let message of messages" class="message">
+      <div *ngFor="let message of messages$ | async" class="message">
         <strong>{{ message.user }}:</strong> {{ message.text }}
         <span class="timestamp">{{ message.time }}</span>
       </div>
